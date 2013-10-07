@@ -1,5 +1,11 @@
 require 'spec_helper'
 
-describe Test do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Event do
+  it "has a valid factory" do
+    FactoryGirl.create(:event).should be_valid
+  end
+
+  it "is invalid without a title" do
+    FactoryGirl.build(:event, title: nil).should_not be_valid
+  end
 end
