@@ -1,7 +1,7 @@
-require 'bcrypt'
+#require 'bcrypt'
 
 class User < ActiveRecord::Base
-  include BCrypt
+  #include BCrypt
 
   validates :name, :presence    => true,
                    :uniqueness  => true
@@ -15,6 +15,14 @@ class User < ActiveRecord::Base
   validates :password, :presence     => true,
                        :length       => { :minimum => 5 },
                        :confirmation => true
+
+  before_save { self.email = email.downcase }
+
+  # Exclude password info from json output.
+  def as_json(options)
+    options[:except] ||= [:password]
+    super(options)
+  end
 
   # FIXME BCrypt
   #before_save :encrypt_password
