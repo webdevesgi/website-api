@@ -19,8 +19,6 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
-    #FIXME BCrypt
-    #@user.password = params[:password]
 
     if @user.save
       render json: @user, status: :created, location: @user
