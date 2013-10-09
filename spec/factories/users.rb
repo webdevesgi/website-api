@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :user do |f|
-    f.name Faker::Name.name
-    f.email Faker::Internet.email
-    f.password Faker::Lorem.characters(10)
+    f.name { Faker::Name.name }
+    f.email { Faker::Internet.email }
+    f.password { Faker::Lorem.characters(10) }
   end
 
   factory :invalid_user_name, parent: :user do |f|
