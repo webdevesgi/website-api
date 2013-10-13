@@ -10,4 +10,12 @@ describe Event do
   end
 
   it { should have_many(:talks) }
+
+  it "can add a talk" do
+    event = FactoryGirl.create(:event)
+    talk = FactoryGirl.create(:talk)
+    event.talks << talk
+    event.save
+    event.talks.size.should eq(1)
+  end
 end
