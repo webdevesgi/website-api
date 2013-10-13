@@ -1,4 +1,5 @@
 WebdevesgiApi::Application.routes.draw do
+  resources :talks, except: [:new, :edit]
   resources :users, except: [:new, :edit]
   resources :events, except: [:new, :edit]
   # The priority is based upon order of creation: first created -> highest priority.
