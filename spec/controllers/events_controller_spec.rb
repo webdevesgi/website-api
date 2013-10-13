@@ -15,13 +15,22 @@ describe EventsController do
       json = JSON.parse(response.body)
       expect(json.length).to eq(10)
     end
+
+    it "includes an array 'talks' key" do
+      event = FactoryGirl.create(:event)
+      get :index
+      json = JSON.parse response.body
+      expect(json.first.include?('talks')).to be_true
+      talks = json.first['talks']
+      expect(talks.kind_of?(Array)).to be_true
+    end
   end
 
   describe "GET #show" do
     it "assigns the requested event to @event" do
       event = FactoryGirl.create(:event)
       get :show, id: event
-      assigns(:event).should eq(event)
+     assigns(:event).should eq(event)
     end
 
     it "renders the :show view" do
@@ -29,6 +38,15 @@ describe EventsController do
       get :show, id: event
       json = JSON.parse(response.body)
       expect(json['title']).to eq(event.title)
+    end
+
+    it "includes an array 'talks' key" do
+      event = FactoryGirl.create(:event)
+      get :show, id: event
+      json = JSON.parse response.body
+      expect(json.include?('talks')).to be_true
+      talks = json['talks']
+      expect(talks.kind_of?(Array)).to be_true
     end
   end
 
