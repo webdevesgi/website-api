@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
 
-    render json: @events
+    render json: @events, include: :talks
   end
 
   # GET /events/1
@@ -12,7 +12,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
 
-    render json: @event
+    render json: @event, include: :talks
   end
 
   # POST /events
