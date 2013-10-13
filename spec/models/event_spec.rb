@@ -8,4 +8,6 @@ describe Event do
   it "is invalid without a title" do
     FactoryGirl.build(:event, title: nil).should_not be_valid
   end
+
+  it { should have_many(:talks) }
 end

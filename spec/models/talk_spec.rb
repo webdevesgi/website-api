@@ -8,4 +8,6 @@ describe Talk do
   it "is invalid without a title" do
     FactoryGirl.build(:talk, title: nil).should_not be_valid
   end
+
+  it { should belong_to(:event) }
 end
