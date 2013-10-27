@@ -2,6 +2,7 @@ require 'bcrypt'
 
 class User < ActiveRecord::Base
   include BCrypt
+  include Tokenable
 
   validates :name, presence:    true,
                    uniqueness:  true

@@ -16,3 +16,8 @@
 /tmp
 
 /.idea
+
+# Ignore bin files and gems
+/gems/*
+/bin/*
+
