@@ -1,4 +1,5 @@
 WebdevesgiApi::Application.routes.draw do
+  post 'auth' => "sessions#auth"
   resources :talks, except: [:new, :edit]
   resources :users, except: [:new, :edit]
   resources :events, except: [:new, :edit]
