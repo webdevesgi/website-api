@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def auth
-    user = User.find_by name: params[:user][:name]
+    user = params[:user] ? User.find_by(name: params[:user][:name]) : nil
     if user && user.authenticate(params[:user][:password])
       render json: { token: user.token}
     else

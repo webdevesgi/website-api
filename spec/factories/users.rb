@@ -7,6 +7,12 @@ FactoryGirl.define do
     f.password { Faker::Lorem.characters(10) }
   end
 
+  factory :user_with_clear_password, parent: :user do |f|
+    str = Faker::Lorem.characters(10)
+    f.name { str }
+    f.password { str }
+  end
+
   factory :invalid_user_name, parent: :user do |f|
     f.name nil
   end

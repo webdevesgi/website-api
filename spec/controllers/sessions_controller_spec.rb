@@ -2,9 +2,10 @@ require 'spec_helper'
 
 describe SessionsController do
 
-  describe "GET 'auth'" do
+  describe "POST 'auth'" do
     it "returns http success" do
-      get 'auth'
+      user = FactoryGirl.create(:user_with_clear_password)
+      post 'auth', :user => {name: user.name, password: user.name}
       response.should be_success
     end
   end
