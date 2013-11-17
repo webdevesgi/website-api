@@ -1,4 +1,7 @@
 class TalksController < ApplicationController
+
+  before_action :is_authenticated?
+
   # GET /talks
   # GET /talks.json
   def index

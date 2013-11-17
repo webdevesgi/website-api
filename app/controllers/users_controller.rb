@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  before_action :is_authenticated?, except: [:create]
+
   # GET /users
   # GET /users.json
   def index

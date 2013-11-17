@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:user][:password])
       render json: { token: user.token}
     else
-      render json: {error: 'Wrong credentials'}, status: 403
+      render_error 'Wrong credentials', 403
     end
   end
 end

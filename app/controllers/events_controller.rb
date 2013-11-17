@@ -1,4 +1,7 @@
 class EventsController < ApplicationController
+
+  before_action :is_authenticated?
+
   # GET /events
   # GET /events.json
   def index
