@@ -13,6 +13,9 @@ gem 'bcrypt-ruby', "~> 3.0.0"
 # JavaScript runtime
 gem 'therubyracer'
 
+# Secure configuration file for Open-Source projects
+gem "figaro"
+
 group :production do
   gem 'pg'
 end
