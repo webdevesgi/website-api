@@ -10,6 +10,7 @@ class ApplicationController < ActionController::API
   end
 
   def is_an_authenticated_app?
+    puts request.remote_host
     authorized_apps = ENV['AUTHORIZED_APPS'].split(' ')
     can_access = authorized_apps.include? request.remote_host
     unless can_access
