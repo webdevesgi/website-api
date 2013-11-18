@@ -2,16 +2,20 @@ require 'spec_helper'
 
 describe UsersController do
 
+  before :each do
+    @user = FactoryGirl.create(:user)
+  end
+
   describe "GET #index" do
     it "populates an array of users" do
-      FactoryGirl.create_list(:user, 10)
-      get :index
+      FactoryGirl.create_list(:user, 9) # + 1 created user in before method == 10
+      get :index, access_token: @user.token
       expect(response).to be_success
     end
 
     it "renders the correct number of users" do
-      FactoryGirl.create_list(:user, 10)
-      get :index
+      FactoryGirl.create_list(:user, 9) # + 1 created user in before method == 10
+      get :index, access_token: @user.token
       json = JSON.parse(response.body)
       expect(json.length).to eq(10)
     end
@@ -20,13 +24,13 @@ describe UsersController do
   describe "GET #show" do
     it "assigns the requested user to @user" do
       user = FactoryGirl.create(:user)
-      get :show, id: user
+      get :show, access_token: @user.token, id: user
       assigns(:user).should eq(user)
     end
 
     it "renders the :show view" do
       user = FactoryGirl.create(:user)
-      get :show, id: user
+      get :show, access_token: @user.token, id: user
       json = JSON.parse(response.body)
       expect(json['name']).to eq(user.name)
     end

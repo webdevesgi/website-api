@@ -53,8 +53,10 @@ describe EventsController do
   describe "POST #create" do
     context "with valid attributes" do
       it "saves the new event in the database" do
+        user = FactoryGirl.create(:user)
         expect{
-          post :create, event:  FactoryGirl
+          post :create, access_token: user.token,
+                        event:  FactoryGirl
                                 .build(:event)
                                 .attributes
                                 .except('id', 'created_at', 'updated_at')
@@ -62,8 +64,10 @@ describe EventsController do
       end
 
       it "renders the created event" do
+        user = FactoryGirl.create(:user)
         event = FactoryGirl.build(:event)
-        post :create, event:  event
+        post :create, access_token: user.token,
+                      event:  event
                               .attributes
                               .except('id', 'created_at', 'updated_at')
         json = JSON.parse(response.body)
