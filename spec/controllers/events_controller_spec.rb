@@ -50,6 +50,17 @@ describe EventsController do
     end
   end
 
+  describe "GET #past_events" do
+    it "renders only past events" do
+      correct_number = 2
+      FactoryGirl.create_list(:event, 10)
+      FactoryGirl.create_list(:past_event, correct_number)
+      get :past_events
+      json = JSON.parse(response.body)
+      expect(json.length).to eq(correct_number)
+    end
+  end
+
   describe "POST #create" do
     context "with valid attributes" do
       it "saves the new event in the database" do

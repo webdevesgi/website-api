@@ -6,6 +6,14 @@ FactoryGirl.define do
     f.starts_at Time.now
   end
 
+  factory :future_event, parent: :event do |f|
+    f.starts_at 1.day.from_now
+  end
+
+  factory :past_event, parent: :event do |f|
+    f.starts_at 1.day.ago
+  end
+
   factory :invalid_event, parent: :event do |f|
     f.title nil
   end
