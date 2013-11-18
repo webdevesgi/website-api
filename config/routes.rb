@@ -2,6 +2,7 @@ WebdevesgiApi::Application.routes.draw do
   post 'auth' => "sessions#auth"
   resources :talks, except: [:new, :edit]
   resources :users, except: [:new, :edit]
+  get 'events/done' => "events#past_events"
   resources :events, except: [:new, :edit]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

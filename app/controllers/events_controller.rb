@@ -1,12 +1,19 @@
 class EventsController < ApplicationController
 
-  before_action :is_authenticated?
+  before_action :is_authenticated?, only: [:create, :update, :destroy]
 
   # GET /events
   # GET /events.json
   def index
     @events = Event.all
 
+    render json: @events, include: :talks
+  end
+
+  # GET /events/done
+  # GET /events/done.json
+  def past_events
+    @events = Event.past
     render json: @events, include: :talks
   end
 
